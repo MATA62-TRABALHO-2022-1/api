@@ -1,0 +1,46 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  findAllUsers: [User!]!
+  findUserById(id: Float!): User!
+}
+
+type User {
+  id: Int!
+  email: String!
+  cpf: String!
+  phone: String!
+  name: String!
+  role: String!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!): User!
+  deleteUser(id: Float!): Boolean!
+}
+
+input UserCreateInput {
+  name: String!
+  email: String!
+  cpf: String!
+  role: String!
+  phone: String!
+  password: String!
+}
+
+input UserUpdateInput {
+  email: String!
+  password: String!
+  role: String!
+  phone: String!
+}
