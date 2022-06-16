@@ -1,11 +1,10 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { Req } from '@nestjs/common';
-import { Request } from 'express';
+import { Resolver, Query, Args, Mutation, Context } from '@nestjs/graphql';
 
 import { User } from './user.entity'
 import { UserService } from './user.service';
 import { UserCreateInput } from './dto/create-user.input';
 import { UserUpdateInput } from './dto/update-user.input';
+import { UserUpdatePasswordInput } from './dto/update-user-password.input';
 
 @Resolver('User')
 export class UserResolver {
@@ -33,9 +32,17 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  async updateUser(@Req() req: Request, @Args('data') data: UserUpdateInput): Promise<User> {
-    const authenticatedUserId = req.headers.authenticatedUserId;
-    const user = await this.userService.updateUser(Number(authenticatedUserId), data);
+  async updateUser(@Context() ctx, @Args('data') data: UserUpdateInput): Promise<User> {
+    const authenticatedUserId = Number(ctx.req.headers.authenticateduserid);
+    const user = await this.userService.updateUser(authenticatedUserId, data);
+
+    return user;
+  }
+
+  @Mutation(() => User)
+  async updateUserPassword(@Context() ctx, @Args('data') data: UserUpdatePasswordInput): Promise<User> {
+    const authenticatedUserId = Number(ctx.req.headers.authenticateduserid);
+    const user = await this.userService.updateUserPassword(authenticatedUserId, data);
 
     return user;
   }

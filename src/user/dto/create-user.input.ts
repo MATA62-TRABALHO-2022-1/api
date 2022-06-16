@@ -5,19 +5,9 @@ import { UserRole } from '../user.entity';
 @InputType()
 export class UserCreateInput {
     @Field()
-    @IsString()
-    @IsNotEmpty({ message: 'Name cannot be empty.' })
-    name: string;
-
-    @Field()
     @IsEmail()
     @IsNotEmpty({ message: 'Email cannot be empty.' })
     email: string;
-
-    @Field()
-    @IsEmail()
-    @IsNotEmpty({ message: 'CPF cannot be empty.' })
-    cpf: string;
 
     @Field()
     @IsEnum(UserRole)
@@ -25,7 +15,17 @@ export class UserCreateInput {
     role: UserRole;
 
     @Field()
-    @IsEmail()
+    @IsString()
+    @IsNotEmpty({ message: 'Name cannot be empty.' })
+    name: string;
+
+    @Field()
+    @IsString()
+    @IsNotEmpty({ message: 'CPF cannot be empty.' })
+    cpf: string;
+
+    @Field()
+    @IsString()
     @IsNotEmpty({ message: 'Phone number cannot be empty.' })
     phone: string;
 

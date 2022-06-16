@@ -9,7 +9,7 @@ const userData: Prisma.UserCreateInput[] = [
     password: 'sysadmin123',
     cpf: '123.456.789-00',
     phone: '(11)4002-8922',
-    role: 'DIRETOR',
+    role: 'diretor',
   }
 ];
 

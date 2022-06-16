@@ -26,21 +26,25 @@ scalar Timestamp
 type Mutation {
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!): User!
+  updateUserPassword(data: UserUpdatePasswordInput!): User!
   deleteUser(id: Float!): Boolean!
 }
 
 input UserCreateInput {
-  name: String!
   email: String!
-  cpf: String!
   role: String!
+  name: String!
+  cpf: String!
   phone: String!
   password: String!
 }
 
 input UserUpdateInput {
-  email: String!
+  role: String
+  email: String
+  phone: String
+}
+
+input UserUpdatePasswordInput {
   password: String!
-  role: String!
-  phone: String!
 }

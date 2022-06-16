@@ -4,6 +4,7 @@ import { PrismaService } from '../../prisma/service.prisma'
 import { User } from './user.entity';
 import { UserCreateInput } from './dto/create-user.input';
 import { UserUpdateInput } from './dto/update-user.input';
+import { UserUpdatePasswordInput } from './dto/update-user-password.input';
 
 @Injectable()
 export class UserService {
@@ -51,12 +52,28 @@ export class UserService {
       },
       data: {
         ...inputData,
-        password: crypto.createHmac('sha256', inputData.password).digest('hex'),
       }
     });
 
     if(!updatedUser) {
       throw new InternalServerErrorException('User could not be updated.');
+    }
+
+    return updatedUser;
+  }
+
+  public async updateUserPassword(id: number, inputData: UserUpdatePasswordInput): Promise<User> {
+    const updatedUser = await this.prismaService.user.update({
+      where: {
+        id,
+      },
+      data: {
+        password: crypto.createHmac('sha256', inputData.password).digest('hex'),
+      }
+    });
+
+    if(!updatedUser) {
+      throw new InternalServerErrorException('Password could not be updated.');
     }
 
     return updatedUser;
