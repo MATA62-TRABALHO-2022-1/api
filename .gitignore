@@ -1,5 +1,5 @@
 # custom
-/prisma/*.db
+prisma/dev.db
 
 # compiled output
 /dist
