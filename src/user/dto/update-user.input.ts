@@ -1,15 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { UserRole } from '../user.entity';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 @InputType()
 export class UserUpdateInput {    
-    @Field({ nullable: true })
-    @IsOptional()
-    @IsEnum(UserRole)
-    @IsNotEmpty({ message: 'User role cannot be empty.' })
-    role?: UserRole;
-
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
@@ -21,4 +14,10 @@ export class UserUpdateInput {
     @IsString()
     @IsNotEmpty({ message: 'Phone number cannot be empty.' })
     phone?: string;
+
+    @Field({ nullable: true })
+    @IsOptional()
+    @IsNumber()
+    @IsNotEmpty({ message: 'User role cannot be empty.' })
+    roleId?: number;
 }

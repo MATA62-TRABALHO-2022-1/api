@@ -1,13 +1,6 @@
-import 'reflect-metadata'
-import { ObjectType, Field, HideField, Int } from '@nestjs/graphql'
-
-export enum UserRole {
-  DIRIGENTE = 'dirigente',
-  DIRETOR = 'diretor',
-  FUNCIONARIO = 'funcionario',
-  SUPERINTENDENTE = 'superintendente',
-  COORDENADOR_CARE = 'coordenador_care',
-}
+import 'reflect-metadata';
+import { ObjectType, Field, HideField, Int } from '@nestjs/graphql';
+import { Role } from '../role/role.entity';
 
 @ObjectType({ isAbstract: true })
 export class User {
@@ -30,11 +23,14 @@ export class User {
   password: string;
 
   @Field()
-  role: string | UserRole;
-
-  @Field()
   createdAt?: Date;
 
   @Field()
   updatedAt?: Date;
+
+  @Field()
+  roleId: number;
+
+  @Field((type) => Role, { nullable: true })
+  role?: Role | null;
 }

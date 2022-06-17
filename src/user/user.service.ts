@@ -11,13 +11,38 @@ export class UserService {
   constructor(@Inject(PrismaService) private prismaService: PrismaService) {};
 
   public async findAllUsers(): Promise<User[]> {
-    return await this.prismaService.user.findMany();
+    return await this.prismaService.user.findMany({
+      include: {
+        role: true,
+      }
+    });
   }
 
-  public async findUserById(id: number): Promise<User> {
+  public async getUserByEmailAndPassword(email: string, password: string): Promise<User> {
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        email,
+        password: crypto.createHmac('sha256', password).digest('hex'),
+      },
+      include: {
+        role: true,
+      }
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found.');
+    }
+
+    return user;
+  }
+
+  public async getUserById(id: number): Promise<User> {
     const user = await this.prismaService.user.findUnique({
       where: {
         id,
+      },
+      include: {
+        role: true,
       }
     });
 
@@ -80,7 +105,7 @@ export class UserService {
   }
 
   public async deleteUser(id: number): Promise<void> {
-    await this.findUserById(id);
+    await this.getUserById(id);
     const deletedUser = await this.prismaService.user.delete({
       where: {
         id,

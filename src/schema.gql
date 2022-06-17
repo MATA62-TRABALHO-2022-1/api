@@ -13,15 +13,23 @@ type User {
   cpf: String!
   phone: String!
   name: String!
-  role: String!
   createdAt: Timestamp!
   updatedAt: Timestamp!
+  roleId: Float!
+  role: Role
 }
 
 """
 `Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
 """
 scalar Timestamp
+
+type Role {
+  id: Int!
+  name: String!
+  routines: String!
+  users: [User!]
+}
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
@@ -32,17 +40,17 @@ type Mutation {
 
 input UserCreateInput {
   email: String!
-  role: String!
   name: String!
   cpf: String!
   phone: String!
   password: String!
+  roleId: Float!
 }
 
 input UserUpdateInput {
-  role: String
   email: String
   phone: String
+  roleId: Float
 }
 
 input UserUpdatePasswordInput {

@@ -14,7 +14,15 @@ model User {
   phone       String      @unique
   name        String
   password    String     
-  role        String    
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
+  role        Role        @relation(fields: [roleId], references: [id])
+  roleId      Int
+}
+
+model Role {
+  id          Int         @id @default(autoincrement())
+  name        String    
+  routines    String
+  users       User[]
 }

@@ -6,9 +6,17 @@ CREATE TABLE "User" (
     "phone" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
+    "updatedAt" DATETIME NOT NULL,
+    "roleId" INTEGER NOT NULL,
+    CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Role" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" TEXT NOT NULL,
+    "routines" TEXT NOT NULL
 );
 
 -- CreateIndex
