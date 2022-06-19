@@ -14,6 +14,7 @@ export class UserService {
     return await this.prismaService.user.findMany({
       include: {
         role: true,
+        instituition: true,
       }
     });
   }

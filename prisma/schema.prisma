@@ -8,21 +8,63 @@ datasource db {
 }
 
 model User {
-  id          Int         @id @default(autoincrement())
-  email       String      @unique
-  cpf         String      @unique
-  phone       String      @unique
-  name        String
-  password    String     
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  role        Role        @relation(fields: [roleId], references: [id])
-  roleId      Int
+  id                        Int             @id @default(autoincrement())
+  email                     String          @unique
+  cpf                       String          @unique
+  phone                     String          @unique
+  name                      String
+  password                  String     
+  createdAt                 DateTime        @default(now())
+  updatedAt                 DateTime        @updatedAt
+  roleId                    Int
+  role                      Role            @relation(fields: [roleId], references: [id])
+  instituitionId            Int
+  instituition              Instituition    @relation(fields: [instituitionId], references: [id])
 }
 
 model Role {
-  id          Int         @id @default(autoincrement())
-  name        String    
-  routines    String
-  users       User[]
+  id                        Int             @id @default(autoincrement())
+  name                      String    
+  routines                  String
+  users                     User[]
+}
+
+model Diploma {
+  id                        Int             @id @default(autoincrement())
+  studentName               String    
+  createdAt                 DateTime        @default(now()) 
+  courseId                  Int
+  course                    Course          @relation(fields: [courseId], references: [id])
+  validationInstituitionId  Int
+  validationInstituition    Instituition    @relation(fields: [validationInstituitionId], references: [id])
+  isValidated               Boolean         @default(false)
+  validatedAt               DateTime   
+}
+
+model Course {
+  id                        Int             @id @default(autoincrement())
+  name                      String
+  degree                    String
+  eMecCode                  String
+  douAuthorization          String
+  douRecognition            String
+  douRenovation             String
+  observation               String
+  partnerInstituitionId     Int
+  instituition              Instituition    @relation(fields: [partnerInstituitionId], references: [id])
+  diplomas                  Diploma[]
+}
+
+model Instituition {
+  id                        Int             @id @default(autoincrement())
+  name                      String
+  address                   String
+  city                      String
+  state                     String
+  keeper                    String
+  mecCredibility            String
+  isPartner                 Boolean
+  users                     User[]
+  courses                   Course[]
+  diplomas                  Diploma[]
 }

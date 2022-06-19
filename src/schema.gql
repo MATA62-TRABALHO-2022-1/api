@@ -17,6 +17,8 @@ type User {
   updatedAt: Timestamp!
   roleId: Float!
   role: Role
+  instituitionId: Float!
+  instituition: Instituition
 }
 
 """
@@ -29,6 +31,46 @@ type Role {
   name: String!
   routines: String!
   users: [User!]
+}
+
+type Instituition {
+  id: Int!
+  name: String!
+  address: String!
+  city: String!
+  state: String!
+  keeper: String!
+  mecCredibility: String!
+  isPartner: Boolean!
+  users: [User!]
+  courses: [Course!]
+  diplomas: [Diploma!]
+}
+
+type Course {
+  id: Int!
+  name: String!
+  degree: String!
+  eMecCode: String!
+  douAuthorization: String!
+  douRecognition: String!
+  douRenovation: String!
+  observation: String!
+  partnerInstituitionId: Float!
+  instituition: Instituition
+  diplomas: [Diploma!]
+}
+
+type Diploma {
+  id: Int!
+  studentName: String!
+  courseId: Float!
+  course: Course
+  validationInstituitionId: Float
+  validationInstituition: Instituition
+  isValidated: Boolean!
+  validatedAt: Timestamp
+  createdAt: Timestamp!
 }
 
 type Mutation {
@@ -45,6 +87,7 @@ input UserCreateInput {
   phone: String!
   password: String!
   roleId: Float!
+  instituitionId: Float!
 }
 
 input UserUpdateInput {
