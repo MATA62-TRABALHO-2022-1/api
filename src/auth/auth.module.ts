@@ -5,7 +5,7 @@ import { UserModule } from 'src/user/user.module';
 
 import { AuthResolver } from './auth.resolver';
 import { AuthService } from './auth.service';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 import { GqlAuthGuard } from './guards/jwt.guard';
 import { RolesGuard } from './guards/roles.guard';
 
