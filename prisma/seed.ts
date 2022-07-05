@@ -5,24 +5,40 @@ const prisma = new PrismaClient();
 
 const roleData: Prisma.RoleCreateInput[] = [
     {
-        name: 'DIRIGENTE',
-        routines: 'CREATE/READ/UPDATE',
+        name: 'COORDENADOR_CARE',
+        routines: '',
     },
     {
-        name: 'DIRETOR',
-        routines: 'CREATE/READ/UPDATE',
+        name: 'DIRIGENTE_INST_PARCEIRA',
+        routines: '',
     },
     {
-        name: 'SUPERINTENDENTE',
-        routines: 'CREATE/READ/UPDATE',
+        name: 'DIRIGENTE_INST_VALIDADORA',
+        routines: '',
     },
     {
-        name: 'COORDENADOR',
-        routines: 'CREATE/READ/UPDATE',
+        name: 'DIRETOR_INST_PARCEIRA',
+        routines: '',
     },
     {
-        name: 'FUNCIONARIO',
-        routines: 'CREATE/READ/UPDATE',
+        name: 'DIRETOR_INST_VALIDADORA',
+        routines: '',
+    },
+    {
+        name: 'SUPERINTENDENTE_INST_PARCEIRA',
+        routines: '',
+    },
+    {
+        name: 'SUPERINTENDENTE_INST_VALIDADORA',
+        routines: '',
+    },
+    {
+        name: 'FUNCIONARIO_INST_PARCEIRA',
+        routines: '',
+    },
+    {
+        name: 'FUNCIONARIO_INST_VALIDADORA',
+        routines: '',
     }
 ];
 
@@ -54,7 +70,7 @@ const userData: Prisma.UserUncheckedCreateInput[] = [
         password: crypto.createHmac('sha256', 'sysadmin123').digest('hex'),
         cpf: '123.456.789-00',
         phone: '(11)4002-8922',
-        roleId: 1,
+        roleId: 5,
         instituitionId: 1,
     }
 ];

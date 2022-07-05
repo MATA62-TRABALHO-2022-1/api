@@ -58,6 +58,25 @@ export class DiplomaService {
         return updatedDiploma;
     }
 
+    public async setIsDiplomaValidated(diplomaId: number, instituitionId: number): Promise<Diploma> {
+        const updatedDiploma = await this.prismaService.diploma.update({
+            where: {
+                id: diplomaId,
+            },
+            data: {
+                isValidated: true,
+                validatedAt: new Date(),
+                validationInstituitionId: instituitionId,
+            }
+        });
+
+        if(!updatedDiploma) {
+            throw new InternalServerErrorException('Diploma could not be validated.');
+        }
+
+        return updatedDiploma;
+    }
+
     public async delete(id: number): Promise<void> {
         await this.findById(id);
         const deletedDiploma = await this.prismaService.diploma.delete({

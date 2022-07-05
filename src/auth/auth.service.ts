@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { User } from 'src/user/user.entity';
 import { UserService } from '../user/user.service';
 
 @Injectable()
@@ -19,16 +20,11 @@ export class AuthService {
         return user;
     }
 
-    async createToken(id: number, email: string, name: string, role: string){
-        const payload = { id, email, name, role };
-
+    async createToken(user: User){
+        const payload = { ...user };
         const accessToken = await this.jwtService.signAsync(payload);
-        const expiresToken = AuthService.prettyPrintSeconds(process.env.JWT_TOKEN_EXPIRES_IN);
 
-        return {            
-            accessToken,
-            expiresToken,
-        };
+        return accessToken;
     }
 
     private static prettyPrintSeconds(time: string): string {
@@ -38,7 +34,7 @@ export class AuthService {
         const seconds = Math.floor((ntime % 3600) % 60);
 
         return `${hours > 0 ? hours + (hours === 1 ? ' hour,' : ' hours,') : ''} 
-    ${minutes > 0 ? minutes + (minutes === 1 ? ' minute' : ' minutes') : ''}
-    ${seconds > 0 ? seconds + (seconds === 1 ? ' second' : ' seconds') : ''}`;
+                ${minutes > 0 ? minutes + (minutes === 1 ? ' minute' : ' minutes') : ''}
+                ${seconds > 0 ? seconds + (seconds === 1 ? ' second' : ' seconds') : ''}`;
     }
 }

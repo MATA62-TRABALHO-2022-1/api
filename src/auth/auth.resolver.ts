@@ -12,12 +12,9 @@ export class AuthResolver {
     async login(@Args('data') data: AuthInput): Promise<AuthType> {
         const user = await this.authService.validateUser(data.email, data.password);
 
-        const token = await this.authService.createToken(user.id, user.email, user.name, user.role.name);
+        const token = await this.authService.createToken(user);
 
-        return {
-            user: user,
-            token: token.accessToken,
-        };
+        return { user, token };
     }
 
 }

@@ -96,6 +96,7 @@ type Mutation {
   deleteCourse(id: Float!): Boolean!
   createDiploma(data: DiplomaCreateInput!): Diploma!
   updateDiploma(data: DiplomaUpdateInput!): Diploma!
+  setIsDiplomaValidated(id: Float!): Diploma!
   deleteDiploma(id: Float!): Boolean!
   createInstituition(data: InstituitionCreateInput!): Instituition!
   updateInstituition(data: InstituitionUpdateInput!): Instituition!

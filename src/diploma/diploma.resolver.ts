@@ -1,7 +1,9 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, Context } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
-import { GqlAuthGuard } from 'src/auth/jwt-auth.guard';
+import { GqlAuthGuard } from 'src/auth/guards/jwt.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 
+import { Roles } from 'src/auth/decorators/roles.decorators';
 import { Diploma } from './diploma.entity';
 import { DiplomaService } from './diploma.service';
 import { DiplomaCreateInput } from './dto/create-diploma.input';
@@ -39,6 +41,16 @@ export class DiplomaResolver {
     @Mutation(() => Diploma)
     async updateDiploma(@Args('data') data: DiplomaUpdateInput): Promise<Diploma> {
         const diploma = await this.diplomaService.update(data);
+
+        return diploma;
+    }
+
+    @Roles('FUNCIONARIO_INST_VALIDADORA')
+    @UseGuards(GqlAuthGuard, RolesGuard)
+    @Mutation(() => Diploma)
+    async setIsDiplomaValidated(@Context() ctx, @Args('id') diplomaId: number): Promise<Diploma> {
+        const instituitionId = Number(ctx.req.instituition.id);
+        const diploma = await this.diplomaService.setIsDiplomaValidated(diplomaId, instituitionId);
 
         return diploma;
     }

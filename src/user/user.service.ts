@@ -28,6 +28,7 @@ export class UserService {
             },
             include: {
                 role: true,
+                instituition: true,
             }
         });
 
@@ -45,6 +46,7 @@ export class UserService {
             },
             include: {
                 role: true,
+                instituition: true,
             }
         });
 

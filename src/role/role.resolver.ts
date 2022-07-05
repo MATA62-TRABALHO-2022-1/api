@@ -1,6 +1,6 @@
 import { Resolver, Query } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
-import { GqlAuthGuard } from 'src/auth/jwt-auth.guard';
+import { GqlAuthGuard } from 'src/auth/guards/jwt.guard';
 
 import { Role } from './role.entity';
 import { RoleService } from './role.service';
