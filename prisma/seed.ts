@@ -70,7 +70,7 @@ const userData: Prisma.UserUncheckedCreateInput[] = [
         password: crypto.createHmac('sha256', 'sysadmin123').digest('hex'),
         cpf: '123.456.789-00',
         phone: '(11)4002-8922',
-        roleId: 5,
+        roleId: 6,
         instituitionId: 1,
     }
 ];
