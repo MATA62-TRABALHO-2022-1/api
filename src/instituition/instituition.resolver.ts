@@ -9,46 +9,46 @@ import { InstituitionUpdateInput } from './dto/update-instituition.input';
 
 @Resolver('Instituition')
 export class InstituitionResolver {
-  constructor(private instituitionService: InstituitionService) {}
+    constructor(private instituitionService: InstituitionService) {}
 
-  @UseGuards(GqlAuthGuard)
-  @Query(() => [Instituition])
-  async findAllInstituitions(): Promise<Instituition[]> {
-    const instituitions = await this.instituitionService.findAll();
+    @UseGuards(GqlAuthGuard)
+    @Query(() => [ Instituition ])
+    async findAllInstituitions(): Promise<Instituition[]> {
+        const instituitions = await this.instituitionService.findAll();
 
-    return instituitions;
-  }
+        return instituitions;
+    }
 
-  @UseGuards(GqlAuthGuard)
-  @Query(() => Instituition)
-  async findInstituitionById(@Args('id') id: number): Promise<Instituition> {
-    const instituition = await this.instituitionService.findById(id);
+    @UseGuards(GqlAuthGuard)
+    @Query(() => Instituition)
+    async findInstituitionById(@Args('id') id: number): Promise<Instituition> {
+        const instituition = await this.instituitionService.findById(id);
 
-    return instituition;
-  }
+        return instituition;
+    }
 
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => Instituition)
-  async createInstituition(@Args('data') data: InstituitionCreateInput): Promise<Instituition> {
-    const instituition = await this.instituitionService.create(data);
+    @UseGuards(GqlAuthGuard)
+    @Mutation(() => Instituition)
+    async createInstituition(@Args('data') data: InstituitionCreateInput): Promise<Instituition> {
+        const instituition = await this.instituitionService.create(data);
 
-    return instituition;
-  }
+        return instituition;
+    }
 
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => Instituition)
-  async updateInstituition(@Args('data') data: InstituitionUpdateInput): Promise<Instituition> {
-    const instituition = await this.instituitionService.update(data);
+    @UseGuards(GqlAuthGuard)
+    @Mutation(() => Instituition)
+    async updateInstituition(@Args('data') data: InstituitionUpdateInput): Promise<Instituition> {
+        const instituition = await this.instituitionService.update(data);
 
-    return instituition;
-  }
+        return instituition;
+    }
 
-  @UseGuards(GqlAuthGuard)
-  @Mutation(() => Boolean)
-  async deleteInstituition(@Args('id') id: number): Promise<true> {
-    await this.instituitionService.delete(id);
+    @UseGuards(GqlAuthGuard)
+    @Mutation(() => Boolean)
+    async deleteInstituition(@Args('id') id: number): Promise<true> {
+        await this.instituitionService.delete(id);
 
-    return true;
-  }
+        return true;
+    }
   
 }

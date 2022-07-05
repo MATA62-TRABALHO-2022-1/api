@@ -4,15 +4,15 @@ import { User } from '../user/user.entity';
 
 @ObjectType({ isAbstract: true })
 export class Role {
-  @Field((type) => Int)
-  id: number;
+    @Field((type) => Int)
+        id: number;
 
-  @Field()
-  name: string;
+    @Field()
+        name: string;
 
-  @Field()
-  routines: string;
+    @Field()
+        routines: string;
 
-  @Field((type) => [User], { nullable: true })
-  users?: User[] | null;
+    @Field((type) => [ User ], { nullable: true })
+        users?: User[] | null;
 }

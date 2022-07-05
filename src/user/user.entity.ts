@@ -5,39 +5,39 @@ import { Instituition } from '../instituition/instituition.entity';
 
 @ObjectType({ isAbstract: true })
 export class User {
-  @Field((type) => Int)
-  id: number;
+    @Field((type) => Int)
+        id: number;
 
-  @Field()
-  email: string;
+    @Field()
+        email: string;
 
-  @Field()
-  cpf: string;
+    @Field()
+        cpf: string;
 
-  @Field()
-  phone: string;
+    @Field()
+        phone: string;
 
-  @Field()
-  name: string;
+    @Field()
+        name: string;
 
-  @HideField()
-  password: string;
+    @HideField()
+        password: string;
 
-  @Field()
-  createdAt?: Date;
+    @Field()
+        createdAt?: Date;
 
-  @Field()
-  updatedAt?: Date;
+    @Field()
+        updatedAt?: Date;
 
-  @Field()
-  roleId: number;
+    @Field()
+        roleId: number;
 
-  @Field((type) => Role, { nullable: true })
-  role?: Role | null;
+    @Field((type) => Role, { nullable: true })
+        role?: Role | null;
 
-  @Field()
-  instituitionId: number;
+    @Field()
+        instituitionId: number;
 
-  @Field((type) => Instituition, { nullable: true })
-  instituition?: Instituition | null;
+    @Field((type) => Instituition, { nullable: true })
+        instituition?: Instituition | null;
 }

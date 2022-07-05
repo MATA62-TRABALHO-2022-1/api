@@ -5,36 +5,36 @@ import { Instituition } from '../instituition/instituition.entity';
 
 @ObjectType({ isAbstract: true })
 export class Course {
-  @Field((type) => Int)
-  id: number;
+    @Field((type) => Int)
+        id: number;
 
-  @Field()
-  name: string;
+    @Field()
+        name: string;
 
-  @Field()
-  degree: string;
+    @Field()
+        degree: string;
 
-  @Field()
-  eMecCode: string;
+    @Field()
+        eMecCode: string;
 
-  @Field()
-  douAuthorization: string;
+    @Field()
+        douAuthorization: string;
 
-  @Field()
-  douRecognition: string;
+    @Field()
+        douRecognition: string;
 
-  @Field()
-  douRenovation: string;
+    @Field()
+        douRenovation: string;
 
-  @Field()
-  observation: string;
+    @Field()
+        observation: string;
 
-  @Field()
-  partnerInstituitionId: number;
+    @Field()
+        partnerInstituitionId: number;
 
-  @Field((type) => Instituition, { nullable: true })
-  instituition?: Instituition | null;
+    @Field((type) => Instituition, { nullable: true })
+        instituition?: Instituition | null;
 
-  @Field((type) => [Diploma], { nullable: true })
-  diplomas?: Diploma[] | null;
+    @Field((type) => [ Diploma ], { nullable: true })
+        diplomas?: Diploma[] | null;
 }

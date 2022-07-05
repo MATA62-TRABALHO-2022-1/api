@@ -7,68 +7,68 @@ import { InstituitionUpdateInput } from './dto/update-instituition.input';
 
 @Injectable()
 export class InstituitionService {
-  constructor(@Inject(PrismaService) private prismaService: PrismaService) {};
+    constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
 
-  public async findAll(): Promise<Instituition[]> {
-    return await this.prismaService.instituition.findMany();
-  }
-
-  public async findById(id: number): Promise<Instituition> {
-    const instituition = await this.prismaService.instituition.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!instituition) {
-      throw new NotFoundException('Instituition not found.');
+    public async findAll(): Promise<Instituition[]> {
+        return await this.prismaService.instituition.findMany();
     }
 
-    return instituition;
-  }
+    public async findById(id: number): Promise<Instituition> {
+        const instituition = await this.prismaService.instituition.findUnique({
+            where: {
+                id,
+            },
+        });
 
-  public async create(inputData: InstituitionCreateInput): Promise<Instituition> {
-    const createdInstituition = await this.prismaService.instituition.create({
-      data: {
-        ...inputData,
-      }
-    });
+        if (!instituition) {
+            throw new NotFoundException('Instituition not found.');
+        }
 
-    if(!createdInstituition) {
-      throw new InternalServerErrorException('Instituition could not be created.');
+        return instituition;
     }
 
-    return createdInstituition;
-  }
+    public async create(inputData: InstituitionCreateInput): Promise<Instituition> {
+        const createdInstituition = await this.prismaService.instituition.create({
+            data: {
+                ...inputData,
+            }
+        });
 
-  public async update(inputData: InstituitionUpdateInput): Promise<Instituition> {
-    const updatedInstituition = await this.prismaService.instituition.update({
-      where: {
-        id: inputData.id,
-      },
-      data: {
-        ...inputData,
-      }
-    });
+        if(!createdInstituition) {
+            throw new InternalServerErrorException('Instituition could not be created.');
+        }
 
-    if(!updatedInstituition) {
-      throw new InternalServerErrorException('Instituition could not be updated.');
+        return createdInstituition;
     }
 
-    return updatedInstituition;
-  }
+    public async update(inputData: InstituitionUpdateInput): Promise<Instituition> {
+        const updatedInstituition = await this.prismaService.instituition.update({
+            where: {
+                id: inputData.id,
+            },
+            data: {
+                ...inputData,
+            }
+        });
 
-  public async delete(id: number): Promise<void> {
-    await this.findById(id);
-    const deletedInstituition = await this.prismaService.instituition.delete({
-      where: {
-        id,
-      }
-    });
+        if(!updatedInstituition) {
+            throw new InternalServerErrorException('Instituition could not be updated.');
+        }
 
-    if(!deletedInstituition) {
-      throw new InternalServerErrorException('Instituition could not be deleted.');
-    }  
-  }
+        return updatedInstituition;
+    }
+
+    public async delete(id: number): Promise<void> {
+        await this.findById(id);
+        const deletedInstituition = await this.prismaService.instituition.delete({
+            where: {
+                id,
+            }
+        });
+
+        if(!deletedInstituition) {
+            throw new InternalServerErrorException('Instituition could not be deleted.');
+        }  
+    }
 
 }

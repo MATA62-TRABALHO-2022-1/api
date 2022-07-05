@@ -6,53 +6,53 @@ export class CourseUpdateInput {
     @Field()
     @IsNumber()
     @IsNotEmpty({ message: 'ID cannot be empty.' })
-    id: number;
+        id: number;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'Name cannot be empty.' })
-    name?: string;
+        name?: string;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'Degree cannot be empty.' })
-    degree?: string;
+        degree?: string;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'eMec Code cannot be empty.' })
-    eMecCode?: string;
+        eMecCode?: string;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'DOU Authorization cannot be empty.' })
-    douAuthorization?: string;
+        douAuthorization?: string;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'DOU Recognition cannot be empty.' })
-    douRecognition?: string;
+        douRecognition?: string;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'DOU Renovation cannot be empty.' })
-    douRenovation?: string;
+        douRenovation?: string;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'Observation cannot be empty.' })
-    observation?: string;
+        observation?: string;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsNumber()
     @IsNotEmpty({ message: 'Instituition ID cannot be empty.' })
-    partnerInstituitionId?: number;
+        partnerInstituitionId?: number;
 }

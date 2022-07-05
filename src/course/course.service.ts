@@ -7,68 +7,68 @@ import { CourseUpdateInput } from './dto/update-course.input';
 
 @Injectable()
 export class CourseService {
-  constructor(@Inject(PrismaService) private prismaService: PrismaService) {};
+    constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
 
-  public async findAll(): Promise<Course[]> {
-    return await this.prismaService.course.findMany();
-  }
-
-  public async findById(id: number): Promise<Course> {
-    const course = await this.prismaService.course.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!course) {
-      throw new NotFoundException('Course not found.');
+    public async findAll(): Promise<Course[]> {
+        return await this.prismaService.course.findMany();
     }
 
-    return course;
-  }
+    public async findById(id: number): Promise<Course> {
+        const course = await this.prismaService.course.findUnique({
+            where: {
+                id,
+            },
+        });
 
-  public async create(inputData: CourseCreateInput): Promise<Course> {
-    const createdCourse = await this.prismaService.course.create({
-      data: {
-        ...inputData,
-      }
-    });
+        if (!course) {
+            throw new NotFoundException('Course not found.');
+        }
 
-    if(!createdCourse) {
-      throw new InternalServerErrorException('Course could not be created.');
+        return course;
     }
 
-    return createdCourse;
-  }
+    public async create(inputData: CourseCreateInput): Promise<Course> {
+        const createdCourse = await this.prismaService.course.create({
+            data: {
+                ...inputData,
+            }
+        });
 
-  public async update(inputData: CourseUpdateInput): Promise<Course> {
-    const updatedCourse = await this.prismaService.course.update({
-      where: {
-        id: inputData.id,
-      },
-      data: {
-        ...inputData,
-      }
-    });
+        if(!createdCourse) {
+            throw new InternalServerErrorException('Course could not be created.');
+        }
 
-    if(!updatedCourse) {
-      throw new InternalServerErrorException('Course could not be updated.');
+        return createdCourse;
     }
 
-    return updatedCourse;
-  }
+    public async update(inputData: CourseUpdateInput): Promise<Course> {
+        const updatedCourse = await this.prismaService.course.update({
+            where: {
+                id: inputData.id,
+            },
+            data: {
+                ...inputData,
+            }
+        });
 
-  public async delete(id: number): Promise<void> {
-    await this.findById(id);
-    const deletedCourse = await this.prismaService.course.delete({
-      where: {
-        id,
-      }
-    });
+        if(!updatedCourse) {
+            throw new InternalServerErrorException('Course could not be updated.');
+        }
 
-    if(!deletedCourse) {
-      throw new InternalServerErrorException('Course could not be deleted.');
-    }  
-  }
+        return updatedCourse;
+    }
+
+    public async delete(id: number): Promise<void> {
+        await this.findById(id);
+        const deletedCourse = await this.prismaService.course.delete({
+            where: {
+                id,
+            }
+        });
+
+        if(!deletedCourse) {
+            throw new InternalServerErrorException('Course could not be deleted.');
+        }  
+    }
 
 }

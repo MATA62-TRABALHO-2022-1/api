@@ -5,30 +5,30 @@ import { Instituition } from '../instituition/instituition.entity';
 
 @ObjectType({ isAbstract: true })
 export class Diploma {
-  @Field((type) => Int)
-  id: number;
+    @Field((type) => Int)
+        id: number;
 
-  @Field()
-  studentName: string;
+    @Field()
+        studentName: string;
 
-  @Field()
-  courseId: number;
+    @Field()
+        courseId: number;
 
-  @Field((type) => Course, { nullable: true })
-  course?: Course;
+    @Field((type) => Course, { nullable: true })
+        course?: Course;
 
-  @Field({ nullable: true })
-  validationInstituitionId?: number;
+    @Field({ nullable: true })
+        validationInstituitionId?: number;
 
-  @Field((type) => Instituition, { nullable: true })
-  validationInstituition?: Instituition;
+    @Field((type) => Instituition, { nullable: true })
+        validationInstituition?: Instituition;
 
-  @Field({ defaultValue: false })
-  isValidated?: boolean;
+    @Field({ defaultValue: false })
+        isValidated?: boolean;
 
-  @Field({ nullable: true })
-  validatedAt?: Date;
+    @Field({ nullable: true })
+        validatedAt?: Date;
 
-  @Field()
-  createdAt?: Date;
+    @Field()
+        createdAt?: Date;
 }

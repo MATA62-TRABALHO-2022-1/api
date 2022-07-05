@@ -6,10 +6,10 @@ export class RoleCreateInput {
     @Field()
     @IsString()
     @IsNotEmpty({ message: 'Name cannot be empty.' })
-    name: string;
+        name: string;
 
     @Field()
     @IsString()
     @IsNotEmpty({ message: 'Routines cannot be empty.' })
-    routines: string;
+        routines: string;
 }

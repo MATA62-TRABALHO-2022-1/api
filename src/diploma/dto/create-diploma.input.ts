@@ -6,10 +6,10 @@ export class DiplomaCreateInput {
     @Field()
     @IsString()
     @IsNotEmpty({ message: 'Student name cannot be empty.' })
-    studentName: string;
+        studentName: string;
 
     @Field()
     @IsNumber()
     @IsNotEmpty({ message: 'Course id cannot be empty.' })
-    courseId: number;
+        courseId: number;
 }

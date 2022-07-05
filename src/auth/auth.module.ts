@@ -9,19 +9,19 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 
 @Module({
-  imports: [
-    UserModule,
-    PassportModule,
-    JwtModule.registerAsync({
-      useFactory: () => ({
-        secret: process.env.JWT_SECRET,
-        signOptions: {
-          expiresIn: '3600s'
-        },
-      }),
-    }),
-  ],
-  providers: [AuthService, AuthResolver, JwtStrategy],
-  exports: [PassportModule.register({ defaultStrategy: "jwt" })],
+    imports: [
+        UserModule,
+        PassportModule,
+        JwtModule.registerAsync({
+            useFactory: () => ({
+                secret: process.env.JWT_SECRET,
+                signOptions: {
+                    expiresIn: '3600s'
+                },
+            }),
+        }),
+    ],
+    providers: [ AuthService, AuthResolver, JwtStrategy ],
+    exports: [ PassportModule.register({ defaultStrategy: 'jwt' }) ],
 })
 export class AuthModule { }

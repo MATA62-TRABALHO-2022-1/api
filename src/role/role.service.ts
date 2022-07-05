@@ -5,10 +5,10 @@ import { Role } from './role.entity';
 
 @Injectable()
 export class RoleService {
-  constructor(@Inject(PrismaService) private prismaService: PrismaService) {};
+    constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
 
-  public async findAll(): Promise<Role[]> {
-    return await this.prismaService.role.findMany();
-  }
+    public async findAll(): Promise<Role[]> {
+        return await this.prismaService.role.findMany();
+    }
 
 }

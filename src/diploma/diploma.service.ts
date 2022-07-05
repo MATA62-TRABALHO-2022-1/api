@@ -7,68 +7,68 @@ import { DiplomaUpdateInput } from './dto/update-diploma.input';
 
 @Injectable()
 export class DiplomaService {
-  constructor(@Inject(PrismaService) private prismaService: PrismaService) {};
+    constructor(@Inject(PrismaService) private prismaService: PrismaService) {}
 
-  public async findAll(): Promise<Diploma[]> {
-    return await this.prismaService.diploma.findMany();
-  }
-
-  public async findById(id: number): Promise<Diploma> {
-    const diploma = await this.prismaService.diploma.findUnique({
-      where: {
-        id,
-      },
-    });
-
-    if (!diploma) {
-      throw new NotFoundException('Diploma not found.');
+    public async findAll(): Promise<Diploma[]> {
+        return await this.prismaService.diploma.findMany();
     }
 
-    return diploma;
-  }
+    public async findById(id: number): Promise<Diploma> {
+        const diploma = await this.prismaService.diploma.findUnique({
+            where: {
+                id,
+            },
+        });
 
-  public async create(inputData: DiplomaCreateInput): Promise<Diploma> {
-    const createdDiploma = await this.prismaService.diploma.create({
-      data: {
-        ...inputData,
-      }
-    });
+        if (!diploma) {
+            throw new NotFoundException('Diploma not found.');
+        }
 
-    if(!createdDiploma) {
-      throw new InternalServerErrorException('Diploma could not be created.');
+        return diploma;
     }
 
-    return createdDiploma;
-  }
+    public async create(inputData: DiplomaCreateInput): Promise<Diploma> {
+        const createdDiploma = await this.prismaService.diploma.create({
+            data: {
+                ...inputData,
+            }
+        });
 
-  public async update(inputData: DiplomaUpdateInput): Promise<Diploma> {
-    const updatedDiploma = await this.prismaService.diploma.update({
-      where: {
-        id: inputData.id,
-      },
-      data: {
-        ...inputData,
-      }
-    });
+        if(!createdDiploma) {
+            throw new InternalServerErrorException('Diploma could not be created.');
+        }
 
-    if(!updatedDiploma) {
-      throw new InternalServerErrorException('Diploma could not be updated.');
+        return createdDiploma;
     }
 
-    return updatedDiploma;
-  }
+    public async update(inputData: DiplomaUpdateInput): Promise<Diploma> {
+        const updatedDiploma = await this.prismaService.diploma.update({
+            where: {
+                id: inputData.id,
+            },
+            data: {
+                ...inputData,
+            }
+        });
 
-  public async delete(id: number): Promise<void> {
-    await this.findById(id);
-    const deletedDiploma = await this.prismaService.diploma.delete({
-      where: {
-        id,
-      }
-    });
+        if(!updatedDiploma) {
+            throw new InternalServerErrorException('Diploma could not be updated.');
+        }
 
-    if(!deletedDiploma) {
-      throw new InternalServerErrorException('Diploma could not be deleted.');
-    }  
-  }
+        return updatedDiploma;
+    }
+
+    public async delete(id: number): Promise<void> {
+        await this.findById(id);
+        const deletedDiploma = await this.prismaService.diploma.delete({
+            where: {
+                id,
+            }
+        });
+
+        if(!deletedDiploma) {
+            throw new InternalServerErrorException('Diploma could not be deleted.');
+        }  
+    }
 
 }

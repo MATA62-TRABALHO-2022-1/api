@@ -6,22 +6,22 @@ export class UserCreateInput {
     @Field()
     @IsEmail()
     @IsNotEmpty({ message: 'Email cannot be empty.' })
-    email: string;
+        email: string;
 
     @Field()
     @IsString()
     @IsNotEmpty({ message: 'Name cannot be empty.' })
-    name: string;
+        name: string;
 
     @Field()
     @IsString()
     @IsNotEmpty({ message: 'CPF cannot be empty.' })
-    cpf: string;
+        cpf: string;
 
     @Field()
     @IsString()
     @IsNotEmpty({ message: 'Phone number cannot be empty.' })
-    phone: string;
+        phone: string;
 
     @Field()
     @IsString()
@@ -36,15 +36,15 @@ export class UserCreateInput {
                 'um número e um caracter especial.',
         },
     )
-    password: string;
+        password: string;
 
     @Field()
     @IsNumber()
     @IsNotEmpty({ message: 'User role id cannot be empty.' })
-    roleId: number;
+        roleId: number;
 
     @Field()
     @IsNumber()
     @IsNotEmpty({ message: 'User instituition id cannot be empty.' })
-    instituitionId: number;
+        instituitionId: number;
 }

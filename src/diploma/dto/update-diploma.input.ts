@@ -6,16 +6,16 @@ export class DiplomaUpdateInput {
     @Field()
     @IsNumber()
     @IsNotEmpty({ message: 'ID cannot be empty.' })
-    id: number;
+        id: number;
 
     @Field({ nullable: true })
     @IsOptional()
     @IsString()
     @IsNotEmpty({ message: 'Name cannot be empty.' })
-    studentName?: string;
+        studentName?: string;
 
     @Field()
     @IsNumber()
     @IsNotEmpty({ message: 'courseID cannot be empty.' })
-    courseId?: number;
+        courseId?: number;
 }

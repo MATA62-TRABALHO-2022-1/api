@@ -17,5 +17,5 @@ export class UserUpdatePasswordInput {
                 'um número e um caracter especial.',
         },
     )
-    password: string;
+        password: string;
 }
