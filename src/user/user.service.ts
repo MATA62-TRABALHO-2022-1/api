@@ -10,7 +10,7 @@ import { UserUpdatePasswordInput } from './dto/update-user-password.input';
 export class UserService {
   constructor(@Inject(PrismaService) private prismaService: PrismaService) {};
 
-  public async findAllUsers(): Promise<User[]> {
+  public async findAll(): Promise<User[]> {
     return await this.prismaService.user.findMany({
       include: {
         role: true,
@@ -37,7 +37,7 @@ export class UserService {
     return user;
   }
 
-  public async getUserById(id: number): Promise<User> {
+  public async findById(id: number): Promise<User> {
     const user = await this.prismaService.user.findUnique({
       where: {
         id,
@@ -54,7 +54,7 @@ export class UserService {
     return user;
   }
 
-  public async createUser(inputData: UserCreateInput): Promise<User> {
+  public async create(inputData: UserCreateInput): Promise<User> {
     await this._checkUserAttributesIsUsedBySomeone(inputData.email, inputData.cpf, inputData.phone);
 
     const createdUser = await this.prismaService.user.create({
@@ -71,7 +71,7 @@ export class UserService {
     return createdUser;
   }
 
-  public async updateUser(id: number, inputData: UserUpdateInput): Promise<User> {
+  public async update(id: number, inputData: UserUpdateInput): Promise<User> {
     const updatedUser = await this.prismaService.user.update({
       where: {
         id,
@@ -88,7 +88,7 @@ export class UserService {
     return updatedUser;
   }
 
-  public async updateUserPassword(id: number, inputData: UserUpdatePasswordInput): Promise<User> {
+  public async updatePassword(id: number, inputData: UserUpdatePasswordInput): Promise<User> {
     const updatedUser = await this.prismaService.user.update({
       where: {
         id,
@@ -105,8 +105,8 @@ export class UserService {
     return updatedUser;
   }
 
-  public async deleteUser(id: number): Promise<void> {
-    await this.getUserById(id);
+  public async delete(id: number): Promise<void> {
+    await this.findById(id);
     const deletedUser = await this.prismaService.user.delete({
       where: {
         id,

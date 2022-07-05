@@ -19,8 +19,8 @@ export class AuthService {
     return user;
   }
 
-  async createToken(id: number, email: string, name: string){
-    const payload = { id, email, name };
+  async createToken(id: number, email: string, name: string, role: string){
+    const payload = { id, email, name, role };
 
     const accessToken = await this.jwtService.signAsync(payload);
     const expiresToken = AuthService.prettyPrintSeconds(process.env.JWT_TOKEN_EXPIRES_IN);

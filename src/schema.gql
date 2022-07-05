@@ -2,9 +2,9 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Query {
-  findAllUsers: [User!]!
-  findUserById(id: Float!): User!
+type AuthType {
+  user: User!
+  token: String!
 }
 
 type User {
@@ -73,11 +73,38 @@ type Diploma {
   createdAt: Timestamp!
 }
 
+type Query {
+  findAllUsers: [User!]!
+  findUserById(id: Float!): User!
+  findAllRoles: [Role!]!
+  findAllCourses: [Course!]!
+  findCourseById(id: Float!): Course!
+  findAllDiplomas: [Diploma!]!
+  findDiplomaById(id: Float!): Diploma!
+  findAllInstituitions: [Instituition!]!
+  findInstituitionById(id: Float!): Instituition!
+}
+
 type Mutation {
+  login(data: AuthInput!): AuthType!
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!): User!
   updateUserPassword(data: UserUpdatePasswordInput!): User!
   deleteUser(id: Float!): Boolean!
+  createCourse(data: CourseCreateInput!): Course!
+  updateCourse(data: CourseUpdateInput!): Course!
+  deleteCourse(id: Float!): Boolean!
+  createDiploma(data: DiplomaCreateInput!): Diploma!
+  updateDiploma(data: DiplomaUpdateInput!): Diploma!
+  deleteDiploma(id: Float!): Boolean!
+  createInstituition(data: InstituitionCreateInput!): Instituition!
+  updateInstituition(data: InstituitionUpdateInput!): Instituition!
+  deleteInstituition(id: Float!): Boolean!
+}
+
+input AuthInput {
+  email: String!
+  password: String!
 }
 
 input UserCreateInput {
@@ -98,4 +125,59 @@ input UserUpdateInput {
 
 input UserUpdatePasswordInput {
   password: String!
+}
+
+input CourseCreateInput {
+  name: String!
+  degree: String!
+  eMecCode: String!
+  douAuthorization: String!
+  douRecognition: String!
+  douRenovation: String!
+  observation: String!
+  partnerInstituitionId: Float!
+}
+
+input CourseUpdateInput {
+  id: Float!
+  name: String
+  degree: String
+  eMecCode: String
+  douAuthorization: String
+  douRecognition: String
+  douRenovation: String
+  observation: String
+  partnerInstituitionId: Float
+}
+
+input DiplomaCreateInput {
+  studentName: String!
+  courseId: Float!
+}
+
+input DiplomaUpdateInput {
+  id: Float!
+  studentName: String
+  courseId: Float!
+}
+
+input InstituitionCreateInput {
+  name: String!
+  address: String!
+  city: String!
+  state: String!
+  keeper: String!
+  mecCredibility: String!
+  isPartner: Boolean!
+}
+
+input InstituitionUpdateInput {
+  id: Float!
+  name: String
+  address: String
+  city: String
+  state: String
+  keeper: String
+  mecCredibility: String
+  isPartner: Boolean
 }

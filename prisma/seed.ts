@@ -1,3 +1,4 @@
+import * as crypto from 'crypto';
 import { PrismaClient, Prisma } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -50,7 +51,7 @@ const userData: Prisma.UserUncheckedCreateInput[] = [
   {
     name: 'System Admin',
     email: 'sysadmin@mata62.com',
-    password: 'sysadmin123',
+    password: crypto.createHmac('sha256', 'sysadmin123').digest('hex'),
     cpf: '123.456.789-00',
     phone: '(11)4002-8922',
     roleId: 1,

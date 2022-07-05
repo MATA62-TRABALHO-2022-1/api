@@ -25,13 +25,13 @@ CREATE TABLE "Role" (
 CREATE TABLE "Diploma" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "studentName" TEXT NOT NULL,
+    "isValidated" BOOLEAN NOT NULL DEFAULT false,
+    "validatedAt" DATETIME,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "courseId" INTEGER NOT NULL,
-    "validationInstituitionId" INTEGER NOT NULL,
-    "isValidated" BOOLEAN NOT NULL DEFAULT false,
-    "validatedAt" DATETIME NOT NULL,
+    "validationInstituitionId" INTEGER,
     CONSTRAINT "Diploma_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Diploma_validationInstituitionId_fkey" FOREIGN KEY ("validationInstituitionId") REFERENCES "Instituition" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Diploma_validationInstituitionId_fkey" FOREIGN KEY ("validationInstituitionId") REFERENCES "Instituition" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateTable

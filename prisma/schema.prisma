@@ -31,14 +31,14 @@ model Role {
 
 model Diploma {
   id                        Int             @id @default(autoincrement())
-  studentName               String    
+  studentName               String
+  isValidated               Boolean         @default(false)
+  validatedAt               DateTime?      
   createdAt                 DateTime        @default(now()) 
   courseId                  Int
   course                    Course          @relation(fields: [courseId], references: [id])
-  validationInstituitionId  Int
-  validationInstituition    Instituition    @relation(fields: [validationInstituitionId], references: [id])
-  isValidated               Boolean         @default(false)
-  validatedAt               DateTime   
+  validationInstituitionId  Int?
+  validationInstituition    Instituition?   @relation(fields: [validationInstituitionId], references: [id]) 
 }
 
 model Course {
