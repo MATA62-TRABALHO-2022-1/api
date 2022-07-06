@@ -3,6 +3,7 @@
 
 We choose the following stack:
 
+- [**NodeJS**](https://nodejs.org/en/): A JavaScript runtime built on Chrome's V8 JavaScript engine
 - [**NestJS**](https://docs.nestjs.com/graphql/quick-start): Web framework for building scalable server-side applications
 - [**GraphQL**](https://graphql.org/): A query language for APIs and a runtime for fulfilling those queries with your existing data
 - [**Prisma Client**](https://www.prisma.io/docs/concepts/components/prisma-client): Databases access (ORM)                  
@@ -11,7 +12,7 @@ We choose the following stack:
 
 ## Getting started
 
-### 1. Download example and install dependencies
+### 1. Clone this repository and install dependencies
 
 Clone this repository:
 
@@ -36,8 +37,18 @@ npx prisma migrate dev --name init
 
 When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered. The seed file in [`prisma/seed.ts`](./prisma/seed.ts) will be executed and your database will be populated with the sample data.
 
+If the seed fails, delete the "migrations" folder and the "dev.db" file that are inside the "prisma" folder and run the command from step 2 again.
 
-### 3. Start the GraphQL server
+### 3. Lint check and fix
+
+Check if all code styles are right.
+
+```
+npm run lint:check
+npm run lint:fix
+```
+
+### 4. Start the GraphQL server
 
 Launch your GraphQL server with this command:
 
