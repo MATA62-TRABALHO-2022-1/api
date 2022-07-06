@@ -13,6 +13,7 @@ import { DiplomaUpdateInput } from './dto/update-diploma.input';
 export class DiplomaResolver {
     constructor(private diplomaService: DiplomaService) {}
 
+    @Roles('FUNCIONARIO_INST_PARCEIRA')
     @UseGuards(GqlAuthGuard)
     @Query(() => [ Diploma ])
     async findAllDiplomas(): Promise<Diploma[]> {
@@ -21,6 +22,7 @@ export class DiplomaResolver {
         return diplomas;
     }
 
+    @Roles('FUNCIONARIO_INST_PARCEIRA')
     @UseGuards(GqlAuthGuard)
     @Query(() => Diploma)
     async findDiplomaById(@Args('id') id: number): Promise<Diploma> {
@@ -29,6 +31,7 @@ export class DiplomaResolver {
         return diploma;
     }
 
+    @Roles('FUNCIONARIO_INST_PARCEIRA')
     @UseGuards(GqlAuthGuard)
     @Mutation(() => Diploma)
     async createDiploma(@Args('data') data: DiplomaCreateInput): Promise<Diploma> {
@@ -37,6 +40,7 @@ export class DiplomaResolver {
         return diploma;
     }
 
+    @Roles('FUNCIONARIO_INST_PARCEIRA')
     @UseGuards(GqlAuthGuard)
     @Mutation(() => Diploma)
     async updateDiploma(@Args('data') data: DiplomaUpdateInput): Promise<Diploma> {
@@ -49,12 +53,13 @@ export class DiplomaResolver {
     @UseGuards(GqlAuthGuard, RolesGuard)
     @Mutation(() => Diploma)
     async setIsDiplomaValidated(@Context() ctx, @Args('id') diplomaId: number): Promise<Diploma> {
-        const instituitionId = Number(ctx.req.instituition.id);
+        const instituitionId = Number(ctx.req.user.instituition.id);
         const diploma = await this.diplomaService.setIsDiplomaValidated(diplomaId, instituitionId);
 
         return diploma;
     }
 
+    @Roles('FUNCIONARIO_INST_PARCEIRA')
     @UseGuards(GqlAuthGuard)
     @Mutation(() => Boolean)
     async deleteDiploma(@Args('id') id: number): Promise<true> {

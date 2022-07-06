@@ -65,13 +65,49 @@ const instituitionData: Prisma.InstituitionUncheckedCreateInput[] = [
 
 const userData: Prisma.UserUncheckedCreateInput[] = [
     {
-        name: 'System Admin',
-        email: 'sysadmin@mata62.com',
-        password: crypto.createHmac('sha256', 'sysadmin123').digest('hex'),
-        cpf: '123.456.789-00',
+        name: 'ADMIN',
+        email: 'admin@mata62.com',
+        password: crypto.createHmac('sha256', 'admin').digest('hex'),
+        cpf: '000.000.000-00',
         phone: '(11)4002-8922',
         roleId: 6,
         instituitionId: 1,
+    },
+    {
+        name: 'Fulano da Silva',
+        email: 'fulano@mata62.com',
+        password: crypto.createHmac('sha256', 'fulano123').digest('hex'),
+        cpf: '123.456.789-00',
+        phone: '(12)4002-8922',
+        roleId: 4,
+        instituitionId: 2,
+    },
+    {
+        name: 'Sicrano dos Santos',
+        email: 'sicrano@mata62.com',
+        password: crypto.createHmac('sha256', 'sicrano123').digest('hex'),
+        cpf: '123.456.789-01',
+        phone: '(13)4002-8922',
+        roleId: 9,
+        instituitionId: 1,
+    },
+    {
+        name: 'Beltrano de Souza',
+        email: 'beltrano@mata62.com',
+        password: crypto.createHmac('sha256', 'beltrano123').digest('hex'),
+        cpf: '123.456.789-02',
+        phone: '(14)4002-8922',
+        roleId: 3,
+        instituitionId: 1,
+    },
+    {
+        name: 'Delano de Souza',
+        email: 'delano@mata62.com',
+        password: crypto.createHmac('sha256', 'delano123').digest('hex'),
+        cpf: '123.456.789-03',
+        phone: '(15)4002-8922',
+        roleId: 8,
+        instituitionId: 2,
     }
 ];
 
